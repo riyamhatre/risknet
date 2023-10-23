@@ -17,7 +17,7 @@ class Config(object):
 	@staticmethod
 	def read_config() -> Dict[str, Any]:
 
-		abs_config_path = os.getenv("HOMEBASE_CONFIG_PATH")
+		abs_config_path = os.getenv("RISKNET_CONFIG_PATH")
 
 		path: str = ""
 

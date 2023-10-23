@@ -22,27 +22,6 @@ RUN apt-get install software-properties-common -y && \
     python${PYTHON_VERSION} get-pip.py && \
     pip${PYTHON_VERSION} install build
 
-###############################################################################
-# Cloud provider specific configuration -- modify, remove, or replace with    #
-# your provider of choice                                                     #
-###############################################################################
-
-# set GCP project
-ARG gcp_project
-
-# install gcloud client and hadoop storage connector
-ENV GCS_LIB_VERS=2.2.2 \
-    GCS_URL=https://storage.googleapis.com/hadoop-lib/gcs/
-RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz \
-    > /tmp/google-cloud-sdk.tar.gz && \
-    mkdir -p /usr/local/gcloud \
-    && tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz \
-    && /usr/local/gcloud/google-cloud-sdk/install.sh
-
-ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
-
-# set default project
-RUN gcloud config set project ${gcp_project}
 
 ###############################################################################
 

@@ -1,6 +1,6 @@
 import logging
 
-from homebase.config import cfg
+from risknet.config import cfg
 
 logger = logging.getLogger(cfg.app_name)
 

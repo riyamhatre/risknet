@@ -1,6 +1,6 @@
 ## ----------------------------------------------------------------------
 ## The purpose of this Makefile is to abstract common commands for
-## building and running the homebase application.
+## building and running the risknet application.
 ## ----------------------------------------------------------------------
 
 
@@ -11,14 +11,14 @@ help:                       ## show this help
 # docker commands
 
 build-image:                ## build docker image
-	docker build -t homebase:latest . --build-arg gcp_project=${PROJECT}
+	docker build -t risknet:latest . --build-arg gcp_project=${PROJECT}
 
 it-shell:                   ## run interactive shell in docker container
 	docker run --mount type=bind,source=$(shell pwd)/secrets,target=/secrets -it homebase bash
 
 push-image:		    ## push image to GCR
-	docker tag homebase gcr.io/${PROJECT}/homebase
-	docker push gcr.io/${PROJECT}/homebase
+	docker tag risknet gcr.io/${PROJECT}/risknet
+	docker push gcr.io/${PROJECT}/risknet
 
 # k8s commands
 
@@ -63,10 +63,10 @@ build:                      ## build python tarball and wheel
 	python${PYTHON_VERSION} -m build
 
 install:                    ## install python wheel
-	pip${PYTHON_VERSION} install dist/homebase-*.whl --no-cache-dir --force-reinstall
+	pip${PYTHON_VERSION} install dist/risknet-*.whl --no-cache-dir --force-reinstall
 
 clean-install: clean build  ## clean artifacts and install install python wheel
-	pip${PYTHON_VERSION} install dist/homebase-*.whl --no-cache-dir --force-reinstall
+	pip${PYTHON_VERSION} install dist/risknet-*.whl --no-cache-dir --force-reinstall
 
 clean:                      ## clean artifacts
 	rm -r -f dist*
@@ -74,10 +74,10 @@ clean:                      ## clean artifacts
 	rm -r -f .mypy_cache
 
 check_types:                ## run mypy type checker
-	mypy src/homebase
+	mypy src/risknet
 
 lint:                       ## run flake8 linter
-	flake8 src/homebase
+	flake8 src/risknet
 
 analyze: check_types lint   ## run full code analysis
 
@@ -85,5 +85,5 @@ test:			    ## run tests locally
 	coverage run -m pytest
 
 docker-test: build-image    ## run tests in docker
-	docker run homebase make test
+	docker run risknet make test
 

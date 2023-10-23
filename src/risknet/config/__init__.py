@@ -1,4 +1,4 @@
-from homebase.config.handlers import GeneralConfig, DataConfig, ModelConfig
+from risknet.config.handlers import GeneralConfig, DataConfig, ModelConfig
 
 cfg: GeneralConfig = GeneralConfig()
 

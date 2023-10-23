@@ -1,7 +1,7 @@
-from homebase.config import data_cfg
-from homebase.utils.managers import DaskManager
+from risknet.config import data_cfg
+from risknet.utils.managers import DaskManager
 import dask.dataframe as dd
-from homebase.utils.log import logger
+from risknet.utils.log import logger
 
 def execute(bucket_root: str = data_cfg.titanic_root) -> None:
     """

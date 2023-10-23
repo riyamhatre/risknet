@@ -1,5 +1,5 @@
-from homebase.utils.log import logger
-from homebase.config import cfg
+from risknet.utils.log import logger
+from risknet.config import cfg
 from dask.distributed import LocalCluster, Client
 from dask_kubernetes import KubeCluster
 from dask_yarn import YarnCluster

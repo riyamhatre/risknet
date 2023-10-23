@@ -1,5 +1,5 @@
 general:
-  app_name: homebase
+  app_name: risknet
   log_bucket: gs://albell-logs/
   dask_cluster_type: local
   gcp_dask_workers: 4
