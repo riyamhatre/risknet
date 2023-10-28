@@ -1,3 +1,5 @@
+'''This .py file reads the .txt data file and defines what "default"/"progress" means. note: I currently limited training to nrows=10_000_000.'''
+
 #Imports:
 import pandas as pd
 from pandas import DataFrame

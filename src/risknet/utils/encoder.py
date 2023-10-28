@@ -1,3 +1,5 @@
+'''This .py file defines functions and classes used to encode columns.'''
+
 #Global Imports
 import pandas as pd
 import numpy as np

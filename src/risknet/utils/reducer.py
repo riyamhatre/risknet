@@ -1,3 +1,8 @@
+'''
+This .py file currently concatenates the Freddie Mac file with the labels we created in label_prep.py.
+It also defines the Reducer class where we use ts split (timeseries split) t 
+'''
+
 from pandas import DataFrame
 import pandas as pd
 import numpy as np

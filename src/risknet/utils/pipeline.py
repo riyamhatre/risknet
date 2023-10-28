@@ -1,3 +1,9 @@
+'''
+This is where everything runs!
+We call various functions from .model, .reducer, .encoder, etc. step-by-step to run the pipeline.
+Check out the comments to see what each part of the code does.
+'''
+
 #Global Imports:
 import pandas as pd
 from pandas import DataFrame
