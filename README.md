@@ -23,3 +23,4 @@ Got error: `error: package directory 'lib3/yaml' does not exist` and `metadata-g
 0.0.6: we're removing YAML as a test
 Got error `ERROR: Could not find a version that satisfies the requirement typing (from risknet) (from versions: none) ERROR: No matching distribution found for typing`
 0.0.10: reverting to version 0.0.6, checking if it works --success! But still error `No matching distribution found for typing`
+0.0.11: what happens when we remove typing (since it's part of stdlib in python >3.5)?
