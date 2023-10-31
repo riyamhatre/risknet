@@ -8,7 +8,7 @@ To update the version:
    - THIS SHOULD CREATE A NEW binary file where version is UPDATED
 - rerun `python3 -m twine upload --repository testpypi dist/*`
    - Username: __token__
-   - Password: [testpypi password]
+   - Password: [testpypi password starting with pypi]
    - If you did NOT update the version # before running `build` then you will get an error
 
 
@@ -16,4 +16,7 @@ To update the version:
 0.0.1: Ran into problems with installing pytest-cov
 0.0.2: Got error:
 `ERROR: Could not find a version that satisfies the requirement dask[complete] (from risknet) (from versions: none) ERROR: No matching distribution found for dask[complete]`
-0.0.3: Tried moving dask into [options.extras_require] not install_requires
+0.0.3: Tried moving dask into [options.extras_require] not install_requires. Got error for flake8
+0.0.4: Commented out more packages.
+Got error: `error: package directory 'lib3/yaml' does not exist` and `metadata-generation-failed`.
+0.0.5: Moved types-YAML into options, still get `'lib3/yaml does not exist'` error :/
