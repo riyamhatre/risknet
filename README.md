@@ -31,3 +31,8 @@ The conflict is caused by:
     risknet 0.0.12 depends on numpy
     pandas 1.3.4 depends on numpy>=1.17.3; platform_machine != "aarch64" and platform_machine != "arm64" and python_version < "3.10"`
 Solution: will try setting python > 3.10
+### SUCCESS! Version 0.0.13 can download from emily's (base)
+Caveats:
+- Probably can only work because it has all dependencies already installed in the env (it threw an error when I tried to run it in risknet_test)
+- Can only import `risknet.utils.label_prep` since `risknet.utils.encoder`, etc. have local imports to different .py files which Python can't read (??)
+But Running `>>> import risknet.utils.label_prep as label_prep, >>> label_prep.label_proc(fm_root, data)` works!
