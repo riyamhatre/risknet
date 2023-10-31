@@ -9,4 +9,11 @@ To update the version:
 - rerun `python3 -m twine upload --repository testpypi dist/*`
    - Username: __token__
    - Password: [testpypi password]
-   - If you did NOT update the version # before running `build` then you will get an error :/
+   - If you did NOT update the version # before running `build` then you will get an error
+
+
+# History:
+0.0.1: Ran into problems with installing pytest-cov
+0.0.2: Got error:
+`ERROR: Could not find a version that satisfies the requirement dask[complete] (from risknet) (from versions: none) ERROR: No matching distribution found for dask[complete]`
+0.0.3: Tried moving dask into [options.extras_require] not install_requires
