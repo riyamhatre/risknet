@@ -24,3 +24,10 @@ Got error: `error: package directory 'lib3/yaml' does not exist` and `metadata-g
 Got error `ERROR: Could not find a version that satisfies the requirement typing (from risknet) (from versions: none) ERROR: No matching distribution found for typing`
 0.0.10: reverting to version 0.0.6, checking if it works --success! But still error `No matching distribution found for typing`
 0.0.11: what happens when we remove typing (since it's part of stdlib in python >3.5)?
+0.0.12: commented out all packages added by EC
+0.0.13: Got new error:
+`ERROR: Cannot install pandas==1.3.4 and risknet==0.0.12 because these package versions have conflicting dependencies.
+The conflict is caused by:
+    risknet 0.0.12 depends on numpy
+    pandas 1.3.4 depends on numpy>=1.17.3; platform_machine != "aarch64" and platform_machine != "arm64" and python_version < "3.10"`
+Solution: will try setting python > 3.10
