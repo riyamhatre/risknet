@@ -35,4 +35,4 @@ Solution: will try setting python > 3.10
 Caveats:
 - Probably can only work because it has all dependencies already installed in the env (it threw an error when I tried to run it in risknet_test)
 - Can only import `risknet.utils.label_prep` since `risknet.utils.encoder`, etc. have local imports to different .py files which Python can't read (??)
-But Running `>>> import risknet.utils.label_prep as label_prep, >>> label_prep.label_proc(fm_root, data)` works!
+But Running `>>> import risknet.utils.label_prep as label_prep, >>> label_prep.label_proc(fm_root, data)` works!!
