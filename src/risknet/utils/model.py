@@ -1,3 +1,5 @@
+'''This .py file defines training hyperparameters and returning evaluation metrics.'''
+
 #Global imports
 import time
 from sklearn import metrics
