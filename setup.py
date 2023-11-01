@@ -3,4 +3,5 @@ EC Note: updated versions of pip do NOT require a setup.py file but older versio
 '''
 from setuptools import setup
 
-setup()
+if __name__ == "__main__":
+    setup()
