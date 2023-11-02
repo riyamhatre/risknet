@@ -2,7 +2,7 @@ Put all your good documentation here.
 
 To update the version:
 - `rm -rf dist build` to remove build folder
-- manually remove "egg-info" folder
+- manually remove "egg-info" folder. This will change `src` to `src/risknet`.
 - update setup.cfg's version number depending on if major, minor, or bug change
 - rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
    - THIS SHOULD CREATE A NEW binary file where version is UPDATED
@@ -38,3 +38,5 @@ Caveats:
 But Running `>>> import risknet.utils.label_prep as label_prep, >>> label_prep.label_proc(fm_root, data)` works!!
 
 0.0.14: change setup.py to `if __name__ == "__main__: setup()`.
+
+0.0.16: try compiling on base environment (python 3.12, pip 23.2)

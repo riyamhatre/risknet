@@ -3,5 +3,5 @@ EC Note: updated versions of pip do NOT require a setup.py file but older versio
 '''
 from setuptools import setup
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     setup()
