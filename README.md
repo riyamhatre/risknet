@@ -37,4 +37,4 @@ Caveats:
 - Can only import `risknet.utils.label_prep` since `risknet.utils.encoder`, etc. have local imports to different .py files which Python can't read (??)
 But Running `>>> import risknet.utils.label_prep as label_prep, >>> label_prep.label_proc(fm_root, data)` works!!
 
-0.0.14: change setup.py to `if __name__ == "__main__: setup()`. Also added setuptools find under src.
+0.0.14: change setup.py to `if __name__ == "__main__: setup()`.
