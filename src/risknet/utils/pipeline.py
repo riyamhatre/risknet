@@ -16,7 +16,7 @@ import logging
 logger = logging.getLogger("freelunch")
 
 #User-Defined Imports:
-import label_prep
+import risknet.utils.label_prep as label_prep
 import reducer
 import encoder
 import model

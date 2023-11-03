@@ -136,7 +136,7 @@ class XGBCVTrain(object):
 
         logger.info("run predictions on train and  datasets")
 
-        train_label['prediction'] = self.bst.predict(dtrain, iteration_range=(self.bst.best_iteration, self.bst.best_iteration))
+        train_label['prediction'] = self.bst.predict(dtrain)
         #EC: apparently this version of XGB says that self.bst doesn't have an attribute best_ntree_limit...will remove
         #ntree_limit=self.bst.best_iteration
 
