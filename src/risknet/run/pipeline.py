@@ -16,10 +16,10 @@ import logging
 logger = logging.getLogger("freelunch")
 
 #User-Defined Imports:
-import risknet.utils.label_prep as label_prep
-import risknet.utils.reducer as reducer
-import risknet.utils.encoder as encoder
-import risknet.utils.model as model
+import risknet.proc.label_prep as label_prep
+import risknet.proc.reducer as reducer
+import risknet.proc.encoder as encoder
+import risknet.run.model as model
 
 #Variables:
 fm_root = "/Users/emily/Desktop/local_180/data/" #location of FM data files
