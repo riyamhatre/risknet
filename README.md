@@ -7,27 +7,21 @@ Welcome to Risknet! This is a downloadable Pip package where you can access and 
       - `handlers.py`
    - data: empty folder where user can store FM dataset
    - jobs
-      - `__init__.py`
       - `cloud_etl.py`: helps save files to cloud
    - proc: contains preprocessing steps like feature encoding, label prep, and train-test splits
-      - `__init__.py`
       - `encoder.py`: feature engineering/encoding categoricals
       - `label_prep.py`: defines default, progress on loan
       - `reducer.py`: reduces features based on importance, also train/test/val splits
    - run: contains files for running pipeline
-      - `__init__.py`
       - `main.py`: currently empty. WIP define pipeline as a function and call here
       - `model.py`: defines the model class + functions
       - `pipeline.py`: calls functions to execute the pipeline
    - sys: contains files to set up system environment and logging
-      - `__init__.py`
       - `log.py`: sets up logger
       - `managers.py`: sets up the dask manager
       - `system.py`: defines creating and removing files via the `sys` package
-   -`init.py`
    -`main.py`: logs start, stop time for running the program (including downloading packages from setup.cfg)
    - tests: store tests here
-      -`__init__.py`
       -`test_stub.py`: currently only asserts True == True. No tests added yet.
 
 # Steps to Update Version
@@ -38,7 +32,7 @@ To update the version:
 - rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
    - THIS SHOULD CREATE A NEW binary file where version is UPDATED
 - rerun `python3 -m twine upload --repository testpypi dist/*`
-   - Username: __token__
+   - Username: `__token__`
    - Password: [testpypi password starting with pypi]
    - If you did NOT update the version # before running `build` then you will get an error
 
