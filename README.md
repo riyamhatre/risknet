@@ -1,30 +1,69 @@
 Welcome to Risknet! This is a downloadable Pip package where you can access and run an XGBoost pipeline.
 
-# Layout
+# Folder/File Layout Layout
 - src/risknet
-   - config: holds `conf.yaml`
+   - `config`: holds `conf.yaml`
       - `conf.yaml`: helps with setup
       - `handlers.py`
-   - data: empty folder where user can store FM dataset
-   - jobs
+   - `data`: empty folder where user can store FM dataset
+   - `jobs`
       - `cloud_etl.py`: helps save files to cloud
-   - proc: contains preprocessing steps like feature encoding, label prep, and train-test splits
+   - `proc`: contains preprocessing steps like feature encoding, label prep, and train-test splits
       - `encoder.py`: feature engineering/encoding categoricals
       - `label_prep.py`: defines default, progress on loan
       - `reducer.py`: reduces features based on importance, also train/test/val splits
-   - run: contains files for running pipeline
+   -`run`: contains files for running pipeline
       - `main.py`: currently empty. WIP define pipeline as a function and call here
       - `model.py`: defines the model class + functions
       - `pipeline.py`: calls functions to execute the pipeline
-   - sys: contains files to set up system environment and logging
+   - `sys`: contains files to set up system environment and logging
       - `log.py`: sets up logger
       - `managers.py`: sets up the dask manager
       - `system.py`: defines creating and removing files via the `sys` package
    -`main.py`: logs start, stop time for running the program (including downloading packages from setup.cfg)
-   - tests: store tests here
+   - `tests`: store tests here
       -`test_stub.py`: currently only asserts True == True. No tests added yet.
 
-# Steps to Update Version
+# Running The Code
+Currently, this code is hosted on testpypi, a Test version of the Python Packaging Index. You can see package documentation [here](https://test.pypi.org/project/risknet/).
+
+As described in the website above, you can access the code by running `pip install -i https://test.pypi.org/simple/ risknet` on your local computer. Ensure pip is updated.
+- Note: this code might not work on your computer as many dependencies of the package like pandas are not available for download via testpypi
+
+To run a specific part of the code, use risknet.utils.{feature_name} as is standard practice when accessing Python packages.
+
+# Reproducibility Information:
+## Accessing Data
+You may want to access our base dataset for reference purposes. Here's how you can do that:
+
+In this study we will use the Freddie Mac Single-Family Loan Dataset to run code. Specifically, we will use the 2009_Q1 dataset.
+1. Go to this link [here](https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset). This will redirect you to the Freddie Mac site.
+2. Scroll down until you reach a table that says "Loan-Level Dataset Files". Download the **standard quarterly** dataset.
+3. Submit necessary education credentials including name, email, and reason for accessing the files. There should not be a payment step. The site will email you a username and password.
+4. Reload the page and log in with your new email/password credentials.
+5. Download the Quarter 1 data from the year 2009. You will receive a .zip file in your Downloads folder. 
+
+If you unzip the file, you will see multiple files including a "date_time" file and a "data" file.
+6. Save these files into the src/data folder in a local copy of this repository
+
+## Dependencies
+You can find a list of this package's dependencies inside the file called `setup.cfg`.
+
+In summary, the downloads needed for this code are:
+- numpy==1.26.1
+- pandas==2.1.2
+- dask[complete]==2023.10.1
+- xgboost==2.0.1
+- PyYAML
+- types-PyYAML
+- pyarrow
+- fastparquet
+- pytest
+- pytest-cov
+- mypy
+- flake8
+
+# Steps to Update Version on TestPyPI
 To update the version:
 - `rm -rf dist build` to remove build folder
 - manually remove "egg-info" folder. This will change `src` to `src/risknet`.
@@ -37,7 +76,7 @@ To update the version:
    - If you did NOT update the version # before running `build` then you will get an error
 
 
-# History:
+# Package Version History Documentation:
 0.0.1: Ran into problems with installing pytest-cov
 
 0.0.2: Got error:
@@ -68,8 +107,7 @@ The conflict is caused by:
 
 Solution: will try setting python > 3.10
 
-
-### SUCCESS! Version 0.0.13 can download from emily's (base)
+**SUCCESS! Version 0.0.13 can download from emily's (base)**
 Caveats:
 - Probably can only work because it has all dependencies already installed in the env (it threw an error when I tried to run it in risknet_test)
 - Can only import `risknet.utils.label_prep` since `risknet.utils.encoder`, etc. have local imports to different .py files which Python can't read (??)
