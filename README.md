@@ -26,12 +26,13 @@ Welcome to Risknet! This is a downloadable Pip package where you can access and 
 
 # Steps to Update Version
 To update the version:
+1. Reset the code from the previous version (if necessary)
 - `rm -rf dist build` to remove build folder
 - manually remove "egg-info" folder. This will change `src` to `src/risknet`.
-- update setup.cfg's version number depending on if major, minor, or bug change
-- rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
+2. Update setup.cfg's version number depending on if major, minor, or bug change
+3. rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
    - THIS SHOULD CREATE A NEW binary file where version is UPDATED
-- rerun `python3 -m twine upload --repository testpypi dist/*`
+4. rerun `python3 -m twine upload --repository testpypi dist/*`
    - Username: `__token__`
    - Password: [testpypi password starting with pypi]
    - If you did NOT update the version # before running `build` then you will get an error
