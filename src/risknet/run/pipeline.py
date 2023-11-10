@@ -16,10 +16,14 @@ import logging
 logger = logging.getLogger("freelunch")
 
 #User-Defined Imports:
-import risknet.proc.label_prep as label_prep
-import risknet.proc.reducer as reducer
-import risknet.proc.encoder as encoder
-import risknet.run.model as model
+import model
+
+#Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
+import sys
+sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
+import label_prep
+import reducer
+import encoder
 
 #Variables:
 fm_root = "/Users/emily/Desktop/local_180/data/" #location of FM data files
