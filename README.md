@@ -67,7 +67,7 @@ In summary, the downloads needed for this code are:
 To update the version:
 1. Reset the code from the previous version (if necessary)
 - `rm -rf dist build` to remove build folder
-- manually remove "egg-info" folder. This will change `src` to `src/risknet`.
+- manually remove the "risknet.egg-info" folder. This will change `src` to `src/risknet`.
 2. Update setup.cfg's version number depending on if major, minor, or bug change
 3. Rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
    - THIS SHOULD CREATE A NEW binary file where version is UPDATED
@@ -122,3 +122,5 @@ But Running `>>> import risknet.utils.label_prep as label_prep, >>> label_prep.l
 0.0.14: change setup.py to `if __name__ == "__main__: setup()`.
 
 0.0.16: try compiling on base environment (python 3.12, pip 23.2)
+
+1.0.17: Uploading to PyPi as risknet! SUCCESS!! :D
