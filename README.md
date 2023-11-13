@@ -63,19 +63,24 @@ In summary, the downloads needed for this code are:
 - mypy
 - flake8
 
-# Steps to Update Version on TestPyPI
+# Steps to Update Version on TestPyPi
 To update the version:
 1. Reset the code from the previous version (if necessary)
 - `rm -rf dist build` to remove build folder
 - manually remove "egg-info" folder. This will change `src` to `src/risknet`.
 2. Update setup.cfg's version number depending on if major, minor, or bug change
-3. rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
+3. Rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
    - THIS SHOULD CREATE A NEW binary file where version is UPDATED
-4. rerun `python3 -m twine upload --repository testpypi dist/*`
+   - Make sure you're in the same directory as your setup.cfg when you run this command.
+4. Rerun `python3 -m twine upload --repository testpypi dist/*`
    - Username: `__token__`
    - Password: [testpypi password starting with pypi]
    - If you did NOT update the version # before running `build` then you will get an error
 
+# When Uploading to PyPi:
+Repeat steps above with these important differences:
+- Use `python3 -m twine upload dist/*` to upload to PyPi. You do not need to specify `--repository testpypi` when uploading to PyPi.
+- Login username will be the same. However, remember to use PyPi's login password/API token, **not** TestPyPi's token for the password.
 
 # Package Version History Documentation:
 0.0.1: Ran into problems with installing pytest-cov
