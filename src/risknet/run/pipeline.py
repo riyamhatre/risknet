@@ -13,21 +13,28 @@ import numpy as np
 from typing import List, Dict, Tuple
 import pickle
 import logging
+import yaml
+import os 
 logger = logging.getLogger("freelunch")
 
 #User-Defined Imports:
-import model
+from risknet.run import model
 
 #Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
 import sys
 sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
-import label_prep
-import reducer
-import encoder
+from risknet.proc import label_prep
+from risknet.proc import reducer
+from risknet.proc import encoder
+
+config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','config.yaml')
+
+with open(config_path) as conf:
+    config = yaml.full_load(conf)
 
 #Variables:
-fm_root = "/Users/emily/Desktop/local_180/data/" #location of FM data files
-data: List[Tuple[str, str, str]] = [('historical_data_time_2009Q1.txt', 'dev_labels.pkl', 'dev_reg_labels.pkl')]
+fm_root = config['data']['fm_root']  #location of FM data files
+data: List[Tuple[str, str, str]] = config['data']['files']
 cat_label: str = "default"
 non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
 #('historical_data_time_2014Q1.txt', 'oot_labels.pkl', 'oot_reg_labels.pkl')]
