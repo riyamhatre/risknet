@@ -79,7 +79,7 @@ df = encoder.rme(df, fm_root)
 
 #Data Cleaning 3: Remove badvars, scale
 #Remove badvars (Feature filter). Save badvars into badvars.pkl, and goodvars (unscaled data) into
-df = encoder.ff(df, fm_root) #Removes bad variables
+#df = encoder.ff(df, fm_root) #Removes bad variables
 
 #Scale the df
 df = encoder.scale(df, fm_root)
