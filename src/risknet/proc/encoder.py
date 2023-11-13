@@ -1,14 +1,13 @@
 '''This .py file defines functions and classes used to encode columns.'''
 
 #Global Imports
-#import pandas as pd
+import pandas as pd
 import numpy as np
 from typing import List, Dict
-#from pandas import DataFrame
+from pandas import DataFrame
 import warnings
 import pickle
 import dask.dataframe as dd #use dask in place of pandas
-from dask_ml.preprocessing import OrdinalEncoder, DummyEncoder
 
 
 #User-Defined Imports
@@ -27,8 +26,8 @@ input:
 - df (DataFrame): passed in after Reducer
 '''
 def datatype(df):
-    df[numericals] = df[numericals].astype('int64')
-    df[categoricals] = df[categoricals].astype(str)
+    df.loc[:, numericals] = df.loc[:, numericals].astype('int64')
+    df.loc[:, categoricals] = df.loc[:, categoricals].astype(str)
     return df
 
 '''
@@ -37,10 +36,10 @@ input:
 - df (DataFrame): passed in after Reducer
 '''
 def num_null(df):
-    numerical_null_map = {'credit_score': 9999, 'number_of_units': 99, 'orig_combined_loan_to_value': 999,
-                          'dti_ratio': 999, 'original_ltv': 999, 'number_of_borrowers': 99}
-    for k, v in numerical_null_map.items():
-        df[k] = df[k].replace(v, np.nan)
+    numerical_null_map: Dict[str,int] = {'credit_score':9999, 'number_of_units':99, 'orig_combined_loan_to_value':999,
+                            'dti_ratio':999, 'original_ltv':999, 'number_of_borrowers':99}
+    for k,v in numerical_null_map.items():
+        df[k] = np.where(df[k] == v, np.nan, df[k])
     return df
 
 '''
@@ -63,7 +62,7 @@ input:
 def cat_enc(df, cat_label='default'):
     for i in categoricals:
         df["was_missing_" + i] = np.where(df[i].isnull(), 1, 0)
-    df[categoricals] = df[categoricals].fillna("missing")
+    df[categoricals]: DataFrame = df[categoricals].fillna("missing")
     return df
 
 '''
@@ -76,7 +75,7 @@ def ord_enc(df, fm_root):
     with open(fm_root + 'ordinal.pkl', 'wb') as f:
         pickle.dump(ordinal, f)
 
-    df = dd.concat([df, ordinal.transform(df, categoricals)], axis=1)
+    df = pd.concat([df, ordinal.transform(df, categoricals)], axis=1)
     return df
 
 '''
@@ -98,12 +97,12 @@ def rme(df, fm_root, cat_label='default'):
         pickle.dump(rme, f)
 
     #apply RME on df
-    df = dd.concat([df, rme.transform(df, categoricals)], axis=1).drop(columns=categoricals)
+    df: DataFrame = pd.concat([df, rme.transform(df, categoricals)], axis=1).drop(columns=categoricals)
 
     for i in numericals:
         df["was_missing_" + i] = np.where(df[i].isnull(), 1, 0)
 
-    df[numericals] = df[numericals].fillna(0)
+    df[numericals]: DataFrame = df[numericals].fillna(0)
 
     return df
 '''
@@ -168,10 +167,10 @@ class RobustHot:
         self.drop_first: bool = True
         self.cols_to_transform: List[str] = []
 
-    def fit_transform(self, df, cols_to_transform: List[str], sep: str = "__", dummy_na: bool = True,
+    def fit_transform(self, df: DataFrame, cols_to_transform: List[str], sep: str = "__", dummy_na: bool = True,
                       drop_first: bool = False, return_all: bool = False):
 
-        df_processed = dd.get_dummies(df, prefix_sep=sep, dummy_na=dummy_na, drop_first=drop_first,
+        df_processed: DataFrame = pd.get_dummies(df, prefix_sep=sep, dummy_na=dummy_na, drop_first=drop_first,
                                                  columns=cols_to_transform)
 
         self.sep = sep
@@ -191,7 +190,7 @@ class RobustHot:
 
     def transform(self, df, return_all=False):
 
-        df_test_processed = dd.get_dummies(df, prefix_sep=self.sep, dummy_na=self.dummy_na,
+        df_test_processed: DataFrame = pd.get_dummies(df, prefix_sep=self.sep, dummy_na=self.dummy_na,
                                                       drop_first=self.drop_first,
                                                       columns=self.cols_to_transform)
 
@@ -272,7 +271,7 @@ class RegularizedMeanEncoder:
                                                    )
 
     def transform(self, transformFrame, colsToTransform):
-        returnFrame = dd.DataFrame(index=transformFrame.index)
+        returnFrame = pd.DataFrame(index=transformFrame.index)
 
         for i in colsToTransform:
             returnFrame[i + "_enc"] = transformFrame[i].map(self.levelDict[i]).fillna(self.defaultPrior)
@@ -287,7 +286,7 @@ class OrdinalEncoder:
         self.missing_name = None
         self.element_length = None
 
-    def fit(self, df, cols_to_fit: List[str], rare_high = True, missing_name = "XXXXXX"):
+    def fit(self, df: DataFrame, cols_to_fit: List[str], rare_high = True, missing_name = "XXXXXX"):
         self.rare_high = rare_high
         self.missing_name = missing_name
         for i in cols_to_fit:
@@ -299,8 +298,8 @@ class OrdinalEncoder:
                 self.element_length = len(element_list)
                 self.level_dict[i] = {k: element_list.index(k) for k in element_list}
 
-    def transform(self, df, cols_to_transform: List[str]):
-        return_frame = dd.DataFrame(index=df.index)
+    def transform(self, df: DataFrame, cols_to_transform: List[str]):
+        return_frame = pd.DataFrame(index=df.index)
 
         if self.rare_high:
             for i in cols_to_transform:
