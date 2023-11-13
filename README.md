@@ -123,4 +123,4 @@ But Running `>>> import risknet.utils.label_prep as label_prep, >>> label_prep.l
 
 0.0.16: try compiling on base environment (python 3.12, pip 23.2)
 
-1.0.17: Uploading to PyPi as risknet! SUCCESS!! :D
+1.0.17: Uploading to PyPi as risknet! SUCCESS!! :D"
