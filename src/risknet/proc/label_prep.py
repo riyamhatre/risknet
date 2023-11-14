@@ -1,7 +1,7 @@
 '''This .py file reads the .txt data file and defines what "default"/"progress" means. note: I currently limited training to nrows=10_000_000.'''
 
 #Imports:
-#import pandas as pd
+import pandas as pd
 from pandas import DataFrame
 import numpy as np
 from typing import List, Dict, Tuple
@@ -39,7 +39,7 @@ def label_proc(fm_root, label_sets):
                                 "delinquent_accrued_interest"]
     
     for i in label_sets:
-        performance_df: DataFrame = dd.read_csv(fm_root + i[0], sep='|', index_col=False,
+        performance_df: DataFrame = pd.read_csv(fm_root + i[0], sep='|', index_col=False,
                                             names=performance_cols, nrows=10_000_000).loc[:,
                                     ["loan_sequence_number", "monthly_reporting_period",
                                     "current_loan_delinquency_status",
@@ -57,19 +57,15 @@ def label_proc(fm_root, label_sets):
 
         performance_df['progress'] = performance_df["loan_age"] / (performance_df["loan_age"] + performance_df["remaining_months_to_maturity"])
 
-        """ performance_df = performance_df.sort_values(['loan_sequence_number', 'monthly_reporting_period'],
-        
-                                                    ascending=True).groupby('loan_sequence_number').head(60) """
-        performance_df = performance_df.compute()
+        performance_df = performance_df.sort_values(['loan_sequence_number', 'monthly_reporting_period'],
+                                                    ascending=True).groupby('loan_sequence_number').head(60)
 
-        flagged_loans = performance_df.groupby("loan_sequence_number")['default'].max().reset_index()
-
+        flagged_loans: DataFrame = pd.DataFrame(performance_df.groupby("loan_sequence_number")['default'].max()).reset_index()
 
         with open(fm_root + i[1], 'wb') as f:
             pickle.dump(flagged_loans, f)
 
-        regression_flagged_loans = performance_df.loc[performance_df['default'] == 0].groupby("loan_sequence_number")['progress'].max().reset_index().rename(columns={'progress':'undefaulted_progress'})
-
+        regression_flagged_loans: DataFrame = pd.DataFrame(performance_df.loc[performance_df['default'] == 0].groupby("loan_sequence_number")['progress'].max()).reset_index().rename(columns={'progress':'undefaulted_progress'})
 
         with open(fm_root + i[2], 'wb') as f:
             pickle.dump(regression_flagged_loans, f)
