@@ -1,5 +1,8 @@
 Welcome to Risknet! This is a downloadable Pip package where you can access and run an XGBoost pipeline.
 
+To access the Risknet package, you can download it by running `pip install risknet`. You can find documentation here: https://pypi.org/project/risknet/1.0.17/
+To access the Risknet code, fork the code from the Git repo.
+
 # Folder/File Layout Layout
 - src/risknet
    - `config`: holds `conf.yaml`
