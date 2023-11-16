@@ -1,5 +1,8 @@
 Welcome to Risknet! This is a downloadable Pip package where you can access and run an XGBoost pipeline.
 
+To access the Risknet package, you can download it by running `pip install risknet`. You can find documentation here: https://pypi.org/project/risknet/1.0.17/
+To access the Risknet code, fork the code from the Git repo.
+
 # Folder/File Layout Layout
 - src/risknet
    - `config`: holds `conf.yaml`
@@ -63,19 +66,24 @@ In summary, the downloads needed for this code are:
 - mypy
 - flake8
 
-# Steps to Update Version on TestPyPI
+# Steps to Update Version on TestPyPi
 To update the version:
 1. Reset the code from the previous version (if necessary)
 - `rm -rf dist build` to remove build folder
-- manually remove "egg-info" folder. This will change `src` to `src/risknet`.
+- manually remove the "risknet.egg-info" folder. This will change `src` to `src/risknet`.
 2. Update setup.cfg's version number depending on if major, minor, or bug change
-3. rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
+3. Rerun `python3 -m build` (you should get a new dist folder + egg folder in \src)
    - THIS SHOULD CREATE A NEW binary file where version is UPDATED
-4. rerun `python3 -m twine upload --repository testpypi dist/*`
+   - Make sure you're in the same directory as your setup.cfg when you run this command.
+4. Rerun `python3 -m twine upload --repository testpypi dist/*`
    - Username: `__token__`
    - Password: [testpypi password starting with pypi]
    - If you did NOT update the version # before running `build` then you will get an error
 
+# When Uploading to PyPi:
+Repeat steps above with these important differences:
+- Use `python3 -m twine upload dist/*` to upload to PyPi. You do not need to specify `--repository testpypi` when uploading to PyPi.
+- Login username will be the same. However, remember to use PyPi's login password/API token, **not** TestPyPi's token for the password.
 
 # Package Version History Documentation:
 0.0.1: Ran into problems with installing pytest-cov
@@ -117,3 +125,5 @@ But Running `>>> import risknet.utils.label_prep as label_prep, >>> label_prep.l
 0.0.14: change setup.py to `if __name__ == "__main__: setup()`.
 
 0.0.16: try compiling on base environment (python 3.12, pip 23.2)
+
+1.0.17: Uploading to PyPi as risknet! SUCCESS!! :D"
