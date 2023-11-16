@@ -99,11 +99,12 @@ class XGBCVTrain(object):
         xgb_bo = BayesianOptimization(xgb_evaluate, pbounds=bounds)
 
         #xgb_bo.set_gp_param(kappa=2.576) #Removed by EC because it didn't like the way I passed in kappa below and wouldn't accept set_gp_param
+        #In this case, n_init = # of random starting points to start iterating for hyperparams
+        #In this case, n_iter = # of steps of bayesian optimization to perform
         xgb_bo.maximize(init_points=bayes_n_init, n_iter=bayes_n_iter)
 
-
+        #These are the best parameters according to logger
         logger.info("Best parameters are:")
-
         logger.info(str(xgb_bo.max['params']))
 
         # todo print/log ideal params here

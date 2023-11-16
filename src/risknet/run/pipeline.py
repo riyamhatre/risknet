@@ -14,6 +14,11 @@ from typing import List, Dict, Tuple
 import pickle
 import logging
 logger = logging.getLogger("freelunch")
+logging.basicConfig(
+    filename="test.log",
+    level=logging.DEBUG,
+    format="%(asctime)s:%(levelname)s:%(message)s"
+    )
 
 import sys
 
