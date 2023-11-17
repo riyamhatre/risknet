@@ -23,12 +23,13 @@ import model
 
 #Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
 sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
-import label_prep
-import reducer
-import encoder
+from src.risknet.proc import label_prep
+from src.risknet.proc import reducer
+from src.risknet.proc import encoder
+
 
 #Variables:
-fm_root = "/Users/emily/Desktop/local_180/data/" #location of FM data files
+fm_root = "/Users/riyamhatre/Downloads/historical_data_2009Q1/" #location of FM data files
 data: List[Tuple[str, str, str]] = [('historical_data_time_2009Q1.txt', 'dev_labels.pkl', 'dev_reg_labels.pkl')]
 cat_label: str = "default"
 non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']

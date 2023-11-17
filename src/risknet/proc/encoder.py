@@ -1,17 +1,18 @@
 '''This .py file defines functions and classes used to encode columns.'''
 
 #Global Imports
-#import pandas as pd
+import pandas as pd
 import numpy as np
 from typing import List, Dict
 from pandas import DataFrame
 import warnings
 import pickle
-import dask.dataframe as dd #use dask in place of pandas
+#import dask.dataframe as dd #use dask in place of pandas
 
 
 #User-Defined Imports
-import reducer
+from src.risknet.proc import reducer
+
 
 #Global Variables:
 numericals: List[str] = ['credit_score', 'number_of_units', 'orig_combined_loan_to_value', 'dti_ratio', 'original_unpaid_principal_balance', 'original_ltv', 'number_of_borrowers']
