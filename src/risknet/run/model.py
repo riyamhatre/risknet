@@ -134,18 +134,15 @@ class XGBCVTrain(object):
 
         self.importance = sorted(self.bst.get_score(importance_type='gain'),
                                  key=self.bst.get_score(importance_type='gain').get, reverse=True)
+        
+        logger.info("Return numerical score for each feature of how it improves performance")
+        logger.info(self.bst.get_score(importance_type='gain'))
 
         logger.info("run predictions on train and  datasets")
 
         train_label['prediction'] = self.bst.predict(dtrain)
         #EC: apparently this version of XGB says that self.bst doesn't have an attribute best_ntree_limit...will remove
         #ntree_limit=self.bst.best_iteration
-
-        #Print the importance of each feature for the model:
-        logger.info("Feature importance for each")
-        logger.info(self.bst.get_fscore())
-
-        logger.info("Generate Metrics")
 
         fpr, tpr, _ = metrics.roc_curve(train_label[target], train_label['prediction'], pos_label=1)
 
