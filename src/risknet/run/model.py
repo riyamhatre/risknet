@@ -102,12 +102,11 @@ class XGBCVTrain(object):
         #In this case, n_init = # of random starting points to start iterating for hyperparams
         #In this case, n_iter = # of steps of bayesian optimization to perform
         xgb_bo.maximize(init_points=bayes_n_init, n_iter=bayes_n_iter)
+        #This is what generates iter | target | x | etc.
 
         #These are the best parameters according to logger
         logger.info("Best parameters are:")
-        logger.info(str(xgb_bo.max['params']))
-
-        # todo print/log ideal params here
+        logger.info(str(xgb_bo.max['params'])) # todo print/log ideal params here
 
         param = {'eta': xgb_bo.max['params']['eta'],
                  'gamma': xgb_bo.max['params']['gamma'],
@@ -141,6 +140,10 @@ class XGBCVTrain(object):
         train_label['prediction'] = self.bst.predict(dtrain)
         #EC: apparently this version of XGB says that self.bst doesn't have an attribute best_ntree_limit...will remove
         #ntree_limit=self.bst.best_iteration
+
+        #Print the importance of each feature for the model:
+        logger.info("Feature importance for each")
+        logger.info(self.bst.get_fscore())
 
         logger.info("Generate Metrics")
 
