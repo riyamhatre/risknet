@@ -34,6 +34,7 @@ sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py file
 import label_prep
 import reducer
 import encoder
+import fe
 
 #Variables:
 fm_root = "/Users/emily/Desktop/local_180/data/" #location of FM data files
@@ -86,9 +87,13 @@ df = encoder.ff(df, fm_root) #Removes bad variables
 
 #Scale the df
 df = encoder.scale(df, fm_root)
+#This puts the complete scaled/cleaned dataframe into df.pkl located in fm_root
+
+#Feature Engineering
+df = fe.fe(df)
 
 #Training the XGB Model
-data = model.xgb_train(fm_root, baseline=False)
+data = model.xgb_train(df, fm_root, baseline=False)
 auc, pr, recall = model.xgb_eval(data)
 
 print(auc)

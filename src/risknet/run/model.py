@@ -105,7 +105,7 @@ class XGBCVTrain(object):
         #This is what generates iter | target | x | etc.
 
         #These are the best parameters according to logger
-        logger.info("Best parameters are:")
+        logger.info("Best/max parameters are:")
         logger.info(str(xgb_bo.max['params'])) # todo print/log ideal params here
 
         param = {'eta': xgb_bo.max['params']['eta'],
@@ -173,13 +173,17 @@ class XGBCVTrain(object):
 
 
 #Training a Model
-def xgb_train(fm_root, baseline=False, cat_label='default'):
+def xgb_train(df, fm_root, baseline=False, cat_label='default'):
     #Set up, initialize:
     #Create XGB object
     xgb_cv: XGBCVTrain = XGBCVTrain()
 
     #Set up DF
-    df = pd.read_pickle(fm_root + 'df.pkl') #pull scaled df and labels
+    #df = pd.read_pickle(fm_root + 'df.pkl') #pull scaled df and labels
+    df = df.merge(pd.read_pickle(fm_root + 'df.pkl')) #merge clean df with FE df
+    
+    logger.info(df.columns)
+    logger.info('flag' in df.columns)
 
     non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag', 'loan_sequence_number'] #Add loan_seq_num EC
     
