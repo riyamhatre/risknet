@@ -1,6 +1,103 @@
-2023-11-17 15:43:57,682:INFO:Best parameters are:
-2023-11-17 15:43:57,683:INFO:{'colsample_bytree': 0.6783515629751132, 'eta': 0.08369522110834719, 'gamma': 0.8726104925121211, 'l_1': 0.13950659666807508, 'l_2': 0.40892887819353024, 'max_depth': 7.89916384098695, 'min_child_weight': 6.104948687925136, 'rounds': 76.12778425963687, 'subsample': 0.6400013580082925}
-2023-11-17 15:43:58,495:INFO:Importance: 
-2023-11-17 15:43:58,497:INFO:['credit_score', 'number_of_borrowers', 'dti_ratio', 'number_of_units', 'orig_combined_loan_to_value', 'seller_name_enc', 'channel_ord_enc', 'servicer_name_ord_enc', 'seller_name_ord_enc', 'servicer_name_enc', 'loan_purpose_ord_enc', 'occupancy_status_ord_enc', 'occupancy_status_enc', 'original_unpaid_principal_balance', 'first_payment_date', 'property_type_enc', 'first_time_homebuyer_ord_enc', 'seller_servicer_match', 'super_conforming_flag_ord_enc', 'property_type_ord_enc']
-2023-11-17 15:43:58,497:INFO:Return numerical score for each feature of how it improves performance
-2023-11-17 15:43:58,498:INFO:{'credit_score': 17.10019302368164, 'first_payment_date': 3.650580883026123, 'number_of_units': 7.600983142852783, 'orig_combined_loan_to_value': 6.1873626708984375, 'dti_ratio': 8.513298034667969, 'original_unpaid_principal_balance': 3.9715240001678467, 'number_of_borrowers': 16.92421531677246, 'seller_servicer_match': 3.42397141456604, 'first_time_homebuyer_ord_enc': 3.539511203765869, 'occupancy_status_ord_enc': 4.36558723449707, 'channel_ord_enc': 5.316932678222656, 'property_type_ord_enc': 3.3466761112213135, 'loan_purpose_ord_enc': 4.3956804275512695, 'seller_name_ord_enc': 5.005790710449219, 'servicer_name_ord_enc': 5.2254204750061035, 'super_conforming_flag_ord_enc': 3.405285358428955, 'occupancy_status_enc': 4.309896945953369, 'property_type_enc': 3.6372060775756836, 'seller_name_enc': 5.7751054763793945, 'servicer_name_enc': 4.866078853607178}
+2023-11-17 14:29:47,129:DEBUG:matplotlib data path: /Users/emily/anaconda3/envs/risknet_test/lib/python3.11/site-packages/matplotlib/mpl-data
+2023-11-17 14:29:47,135:DEBUG:CONFIGDIR=/Users/emily/.matplotlib
+2023-11-17 14:29:47,136:DEBUG:interactive is False
+2023-11-17 14:29:47,136:DEBUG:platform is darwin
+2023-11-17 14:29:47,202:DEBUG:CACHEDIR=/Users/emily/.matplotlib
+2023-11-17 14:29:47,206:DEBUG:Using fontManager instance from /Users/emily/.matplotlib/fontlist-v330.json
+2023-11-17 14:30:31,633:INFO:BEGIN LOGIT SMALL TRAINING JOB
+2023-11-17 14:30:31,634:INFO:Train on full data
+2023-11-17 14:30:31,634:INFO:Convert to DMatrix
+2023-11-17 14:30:31,718:INFO:Define Evaluation Function
+2023-11-17 14:35:06,979:INFO:Best parameters are:
+2023-11-17 14:35:06,979:INFO:{'colsample_bytree': 0.8227439133709712, 'eta': 0.0722926630753919, 'gamma': 0.3664768593050385, 'l_1': 0.36373685757220064, 'l_2': 0.7728390730640271, 'max_depth': 7.715950292102512, 'min_child_weight': 6.4276451324003325, 'rounds': 89.47907204294405, 'subsample': 0.6786354763219214}
+2023-11-17 14:35:07,759:INFO:Importance: 
+2023-11-17 14:35:07,761:INFO:['credit_score', 'number_of_borrowers', 'dti_ratio', 'number_of_units', 'orig_combined_loan_to_value', 'seller_name_enc', 'servicer_name_ord_enc', 'channel_ord_enc', 'occupancy_status_ord_enc', 'seller_name_ord_enc', 'servicer_name_enc', 'occupancy_status_enc', 'loan_purpose_ord_enc', 'first_time_homebuyer_ord_enc', 'seller_servicer_match', 'first_payment_date', 'original_unpaid_principal_balance', 'super_conforming_flag_ord_enc', 'property_type_enc', 'property_type_ord_enc']
+2023-11-17 14:35:07,761:INFO:testing get_score
+2023-11-17 14:35:07,761:INFO:{'credit_score': 16.62484359741211, 'first_payment_date': 3.617218017578125, 'number_of_units': 7.0623064041137695, 'orig_combined_loan_to_value': 5.879847049713135, 'dti_ratio': 7.251908302307129, 'original_unpaid_principal_balance': 3.5847203731536865, 'number_of_borrowers': 12.174407005310059, 'seller_servicer_match': 3.659104824066162, 'first_time_homebuyer_ord_enc': 3.942643404006958, 'occupancy_status_ord_enc': 4.889081954956055, 'channel_ord_enc': 5.256636142730713, 'property_type_ord_enc': 3.0148088932037354, 'loan_purpose_ord_enc': 4.2261762619018555, 'seller_name_ord_enc': 4.80635929107666, 'servicer_name_ord_enc': 5.258917808532715, 'super_conforming_flag_ord_enc': 3.4252376556396484, 'occupancy_status_enc': 4.319580078125, 'property_type_enc': 3.3440775871276855, 'seller_name_enc': 5.413228988647461, 'servicer_name_enc': 4.5976104736328125}
+2023-11-17 14:35:07,762:INFO:run predictions on train and  datasets
+2023-11-17 14:35:07,854:INFO:Train AUC: 0.8980527427807126
+2023-11-17 14:35:07,854:INFO:XGB TRAINING AND EVALUATION OUTPUT DONE
+2023-11-17 14:35:07,854:INFO:Total time: 4.6minutes
+
+2023-11-17 19:07:42,068:DEBUG:matplotlib data path: /Users/emily/anaconda3/envs/risknet_test/lib/python3.11/site-packages/matplotlib/mpl-data
+2023-11-17 19:07:42,075:DEBUG:CONFIGDIR=/Users/emily/.matplotlib
+2023-11-17 19:07:42,076:DEBUG:interactive is False
+2023-11-17 19:07:42,076:DEBUG:platform is darwin
+2023-11-17 19:07:42,143:DEBUG:CACHEDIR=/Users/emily/.matplotlib
+2023-11-17 19:07:42,146:DEBUG:Using fontManager instance from /Users/emily/.matplotlib/fontlist-v330.json
+2023-11-17 19:08:37,279:INFO:Index(['loan_sequence_number', 'credit_score_x', 'first_payment_date_x',
+       'number_of_units_x', 'orig_combined_loan_to_value_x', 'dti_ratio_x',
+       'original_unpaid_principal_balance_x', 'number_of_borrowers_x',
+       'seller_servicer_match_x', 'was_missing_first_time_homebuyer_x',
+       'first_time_homebuyer_ord_enc_x', 'occupancy_status_ord_enc_x',
+       'channel_ord_enc_x', 'property_type_ord_enc_x',
+       'loan_purpose_ord_enc_x', 'seller_name_ord_enc_x',
+       'servicer_name_ord_enc_x', 'super_conforming_flag_ord_enc_x',
+       'occupancy_status_enc_x', 'property_type_enc_x', 'seller_name_enc_x',
+       'servicer_name_enc_x', 'was_missing_credit_score_x',
+       'was_missing_orig_combined_loan_to_value_x', 'was_missing_dti_ratio_x',
+       'was_missing_number_of_borrowers_x', 'credit_score_y',
+       'first_payment_date_y', 'number_of_units_y',
+       'orig_combined_loan_to_value_y', 'dti_ratio_y',
+       'original_unpaid_principal_balance_y', 'number_of_borrowers_y',
+       'seller_servicer_match_y', 'was_missing_first_time_homebuyer_y',
+       'first_time_homebuyer_ord_enc_y', 'occupancy_status_ord_enc_y',
+       'channel_ord_enc_y', 'property_type_ord_enc_y',
+       'loan_purpose_ord_enc_y', 'seller_name_ord_enc_y',
+       'servicer_name_ord_enc_y', 'super_conforming_flag_ord_enc_y',
+       'occupancy_status_enc_y', 'property_type_enc_y', 'seller_name_enc_y',
+       'servicer_name_enc_y', 'was_missing_credit_score_y',
+       'was_missing_orig_combined_loan_to_value_y', 'was_missing_dti_ratio_y',
+       'was_missing_number_of_borrowers_y'],
+      dtype='object')
+2023-11-17 19:08:37,280:INFO:False
+2023-11-17 19:08:37,797:INFO:Index(['loan_sequence_number', 'credit_score_x', 'first_payment_date_x',
+       'number_of_units_x', 'orig_combined_loan_to_value_x', 'dti_ratio_x',
+       'original_unpaid_principal_balance_x', 'number_of_borrowers_x',
+       'seller_servicer_match_x', 'was_missing_first_time_homebuyer_x',
+       'first_time_homebuyer_ord_enc_x', 'occupancy_status_ord_enc_x',
+       'channel_ord_enc_x', 'property_type_ord_enc_x',
+       'loan_purpose_ord_enc_x', 'seller_name_ord_enc_x',
+       'servicer_name_ord_enc_x', 'super_conforming_flag_ord_enc_x',
+       'occupancy_status_enc_x', 'property_type_enc_x', 'seller_name_enc_x',
+       'servicer_name_enc_x', 'was_missing_credit_score_x',
+       'was_missing_orig_combined_loan_to_value_x', 'was_missing_dti_ratio_x',
+       'was_missing_number_of_borrowers_x', 'credit_score_y',
+       'first_payment_date_y', 'number_of_units_y',
+       'orig_combined_loan_to_value_y', 'dti_ratio_y',
+       'original_unpaid_principal_balance_y', 'number_of_borrowers_y',
+       'seller_servicer_match_y', 'was_missing_first_time_homebuyer_y',
+       'first_time_homebuyer_ord_enc_y', 'occupancy_status_ord_enc_y',
+       'channel_ord_enc_y', 'property_type_ord_enc_y',
+       'loan_purpose_ord_enc_y', 'seller_name_ord_enc_y',
+       'servicer_name_ord_enc_y', 'super_conforming_flag_ord_enc_y',
+       'occupancy_status_enc_y', 'property_type_enc_y', 'seller_name_enc_y',
+       'servicer_name_enc_y', 'was_missing_credit_score_y',
+       'was_missing_orig_combined_loan_to_value_y', 'was_missing_dti_ratio_y',
+       'was_missing_number_of_borrowers_y', 'credit_score',
+       'first_payment_date', 'number_of_units', 'orig_combined_loan_to_value',
+       'dti_ratio', 'original_unpaid_principal_balance', 'number_of_borrowers',
+       'default', 'undefaulted_progress', 'flag', 'seller_servicer_match',
+       'was_missing_first_time_homebuyer', 'first_time_homebuyer_ord_enc',
+       'occupancy_status_ord_enc', 'channel_ord_enc', 'property_type_ord_enc',
+       'loan_purpose_ord_enc', 'seller_name_ord_enc', 'servicer_name_ord_enc',
+       'super_conforming_flag_ord_enc', 'occupancy_status_enc',
+       'property_type_enc', 'seller_name_enc', 'servicer_name_enc',
+       'was_missing_credit_score', 'was_missing_orig_combined_loan_to_value',
+       'was_missing_dti_ratio', 'was_missing_number_of_borrowers'],
+      dtype='object')
+2023-11-17 19:08:37,797:INFO:True
+2023-11-17 19:08:38,081:INFO:BEGIN LOGIT SMALL TRAINING JOB
+2023-11-17 19:08:38,081:INFO:Train on full data
+2023-11-17 19:08:38,081:INFO:Convert to DMatrix
+2023-11-17 19:08:38,271:INFO:Define Evaluation Function
+2023-11-17 19:16:06,077:INFO:Best/max parameters are:
+2023-11-17 19:16:06,077:INFO:{'colsample_bytree': 0.9069279681791935, 'eta': 0.08945800578284395, 'gamma': 0.24977731303874617, 'l_1': 0.6370487314848408, 'l_2': 0.45852446373737155, 'max_depth': 7.9318378596109405, 'min_child_weight': 6.024848996751322, 'rounds': 99.32172097635957, 'subsample': 0.9619592686446791}
+2023-11-17 19:16:07,770:INFO:Importance: 
+2023-11-17 19:16:07,771:INFO:['credit_score_x', 'credit_score', 'number_of_units_y', 'credit_score_y', 'seller_name_ord_enc', 'number_of_borrowers_x', 'number_of_borrowers_y', 'dti_ratio_y', 'dti_ratio', 'servicer_name_enc_y', 'orig_combined_loan_to_value_y', 'dti_ratio_x', 'servicer_name_ord_enc_y', 'orig_combined_loan_to_value_x', 'channel_ord_enc_x', 'seller_name_ord_enc_y', 'seller_name_ord_enc_x', 'number_of_units_x', 'seller_name_enc', 'seller_name_enc_x', 'servicer_name_ord_enc_x', 'servicer_name_enc_x', 'seller_name_enc_y', 'super_conforming_flag_ord_enc_y', 'loan_purpose_ord_enc_x', 'property_type_enc_y', 'seller_servicer_match_x', 'first_payment_date_y', 'original_unpaid_principal_balance_y', 'property_type_ord_enc_y', 'property_type_ord_enc_x', 'original_unpaid_principal_balance_x', 'occupancy_status_enc_x', 'property_type_enc_x', 'channel_ord_enc_y', 'first_time_homebuyer_ord_enc_x', 'seller_servicer_match_y', 'occupancy_status_ord_enc_x', 'loan_purpose_ord_enc_y', 'servicer_name_enc', 'first_payment_date_x', 'first_time_homebuyer_ord_enc_y', 'was_missing_dti_ratio_x', 'occupancy_status_ord_enc', 'super_conforming_flag_ord_enc_x', 'occupancy_status_ord_enc_y', 'occupancy_status_enc_y']
+2023-11-17 19:16:07,772:INFO:Return numerical score for each feature of how it improves performance
+2023-11-17 19:16:07,772:INFO:{'credit_score_x': 17.289066314697266, 'first_payment_date_x': 2.882216691970825, 'number_of_units_x': 5.313260078430176, 'orig_combined_loan_to_value_x': 6.011472225189209, 'dti_ratio_x': 6.270358085632324, 'original_unpaid_principal_balance_x': 3.522568464279175, 'number_of_borrowers_x': 10.907878875732422, 'seller_servicer_match_x': 3.8895044326782227, 'first_time_homebuyer_ord_enc_x': 3.1485791206359863, 'occupancy_status_ord_enc_x': 3.076662063598633, 'channel_ord_enc_x': 5.729770183563232, 'property_type_ord_enc_x': 3.526538372039795, 'loan_purpose_ord_enc_x': 4.023773670196533, 'seller_name_ord_enc_x': 5.315357685089111, 'servicer_name_ord_enc_x': 4.792586803436279, 'super_conforming_flag_ord_enc_x': 1.9763059616088867, 'occupancy_status_enc_x': 3.3835670948028564, 'property_type_enc_x': 3.266989231109619, 'seller_name_enc_x': 4.999574661254883, 'servicer_name_enc_x': 4.568521022796631, 'was_missing_dti_ratio_x': 2.245020866394043, 'credit_score_y': 11.704794883728027, 'first_payment_date_y': 3.825350046157837, 'number_of_units_y': 13.096451759338379, 'orig_combined_loan_to_value_y': 6.8723649978637695, 'dti_ratio_y': 7.676869869232178, 'original_unpaid_principal_balance_y': 3.6199772357940674, 'number_of_borrowers_y': 7.951292991638184, 'seller_servicer_match_y': 3.1150124073028564, 'first_time_homebuyer_ord_enc_y': 2.7012851238250732, 'occupancy_status_ord_enc_y': 1.9606974124908447, 'channel_ord_enc_y': 3.2290542125701904, 'property_type_ord_enc_y': 3.5567145347595215, 'loan_purpose_ord_enc_y': 3.0697402954101562, 'seller_name_ord_enc_y': 5.414821147918701, 'servicer_name_ord_enc_y': 6.15622615814209, 'super_conforming_flag_ord_enc_y': 4.0902299880981445, 'occupancy_status_enc_y': 1.2162514925003052, 'property_type_enc_y': 3.980736494064331, 'seller_name_enc_y': 4.143075466156006, 'servicer_name_enc_y': 6.955902576446533, 'credit_score': 15.141253471374512, 'dti_ratio': 7.596213340759277, 'occupancy_status_ord_enc': 2.2034249305725098, 'seller_name_ord_enc': 11.070469856262207, 'seller_name_enc': 5.026236057281494, 'servicer_name_enc': 2.931521415710449}
+2023-11-17 19:16:07,773:INFO:run predictions on train and  datasets
+2023-11-17 19:16:07,873:INFO:Train AUC: 0.9136195737268435
+2023-11-17 19:16:07,873:INFO:XGB TRAINING AND EVALUATION OUTPUT DONE
+2023-11-17 19:16:07,873:INFO:Total time: 7.5minutes
