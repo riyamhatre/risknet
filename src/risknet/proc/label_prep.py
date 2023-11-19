@@ -11,6 +11,11 @@ import logging
 import dask.dataframe as dd #use dask in place of pandas
 logger = logging.getLogger("freelunch")
 
+# from src.risknet.proc import parquet
+#
+# #load data
+# parquet.parquet_convert()
+
 
 '''
 label_proc: defines "default" and "progress" for a loan. Also creates dev_labels.pkl, dev_reg_labels.pkl to store default and progress status.

@@ -26,6 +26,7 @@ sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py file
 from src.risknet.proc import label_prep
 from src.risknet.proc import reducer
 from src.risknet.proc import encoder
+# from src.risknet.proc import parquet
 
 
 #Variables:
@@ -34,6 +35,9 @@ data: List[Tuple[str, str, str]] = [('out.parquet', 'dev_labels.pkl', 'dev_reg_l
 cat_label: str = "default"
 non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
 #('historical_data_time_2014Q1.txt', 'oot_labels.pkl', 'oot_reg_labels.pkl')]
+
+#load data
+# parquet.parquet_convert()
 
 #Pipeline:
 
