@@ -6,6 +6,7 @@ from pandas import DataFrame
 import numpy as np
 from typing import List, Dict, Tuple
 import pickle
+import pyarrow as pa
 import logging
 import dask.dataframe as dd #use dask in place of pandas
 logger = logging.getLogger("freelunch")
@@ -24,27 +25,34 @@ If the len(List) > 1, then we are pulling data from multiple years.
 '''
 def label_proc(fm_root, label_sets):
 
-    performance_cols: List[str] = ["loan_sequence_number", "monthly_reporting_period", "current_actual_upb",
-                                "current_loan_delinquency_status", "loan_age",
-                                "remaining_months_to_maturity",
-                                "repurchase_flag", "modification_flag", "zero_balance_code",
-                                "zero_balance_effective_date", "current_interest_rate",
-                                "current_deferred_upb",
-                                "due_date_last_installment",
-                                "insurance_recoveries", "net_sales_proceeds", "non_insurance_recoveries",
-                                "expenses",
-                                "legal_costs", "maintenance_costs", "taxes_and_insurance", "misc_expenses",
-                                "actual_loss", "modification_cost", "step_modification_flag",
-                                "deferred_payment_modification", "loan_to_value", "zero_balance_removal_upb",
-                                "delinquent_accrued_interest"]
+    performance_cols: List[str] =  ["loan_sequence_number", "monthly_reporting_period", "current_actual_upb",
+                                   "current_loan_delinquency_status", "loan_age",
+                                   "remaining_months_to_maturity",
+                                   "repurchase_flag", "modification_flag", "zero_balance_code",
+                                   "zero_balance_effective_date", "current_interest_rate",
+                                   "current_deferred_upb",
+                                   "due_date_last_installment",
+                                   "insurance_recoveries", "net_sales_proceeds", "non_insurance_recoveries",
+                                   "expenses",
+                                   "legal_costs", "maintenance_costs", "taxes_and_insurance", "misc_expenses",
+                                   "actual_loss", "modification_cost", "step_modification_flag",
+                                   "deferred_payment_modification", "loan_to_value", "zero_balance_removal_upb",
+                                   "delinquent_accrued_interest","del_disaster","borrower_assistance","month_mod_cost","interest_bearing", "row_hash"]
     
     for i in label_sets:
-        performance_df: DataFrame = pd.read_csv(fm_root + i[0], sep='|', index_col=False,
-                                            names=performance_cols, nrows=10_000_000).loc[:,
+        performance_df = pd.read_parquet(fm_root + i[0])
+        #print(len(performance_df.columns))
+        performance_df.columns = performance_cols
+        performance_df = performance_df.drop(columns= {"row_hash"}).loc[:,
                                     ["loan_sequence_number", "monthly_reporting_period",
                                     "current_loan_delinquency_status",
                                     "zero_balance_code", "loan_age", "remaining_months_to_maturity"]]
-                                    #EC: Added nrows to make faster
+        # performance_df: DataFrame = pd.read_csv(fm_root + i[0], sep='|', index_col=False,
+        #                                     names=performance_cols, nrows=10_000_000).loc[:,
+        #                             ["loan_sequence_number", "monthly_reporting_period",
+        #                             "current_loan_delinquency_status",
+        #                             "zero_balance_code", "loan_age", "remaining_months_to_maturity"]]
+        #                             #EC: Added nrows to make faster
 
         performance_df.loc[:, ["current_loan_delinquency_status", "zero_balance_code"]] = performance_df.loc[:, [
                                                                                 "current_loan_delinquency_status",

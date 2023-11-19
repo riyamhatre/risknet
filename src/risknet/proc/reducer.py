@@ -25,13 +25,16 @@ def reduce(fm_root, i):
                                 "channel", "prepayment_penalty_mortgage", "product_type", "property_state",
                                 "property_type", "postal_code", "loan_sequence_number", "loan_purpose",
                                 "original_loan_term",
-                                "number_of_borrowers", "seller_name", "servicer_name", "super_conforming_flag"]
+                                "number_of_borrowers", "seller_name", "servicer_name", "super_conforming_flag", "row_hash"]
 
     drop_cols: List[str] = ['maturity_date', 'metropolitan_division', 'original_interest_rate', 'property_state',
                             'postal_code', 'mortgage_insurance_percent', 'original_loan_term']
 
-    df = pd.concat([Reducer.simple_ts_split(pd.read_csv(fm_root + 'historical_data_2009Q1.txt', sep='|', index_col=False,
-                                                            names=origination_cols, nrows=1_000_000).merge(
+    temp = pd.read_parquet(fm_root + 'out1.parquet')
+    temp.columns = origination_cols
+    temp = temp.drop(columns = "row_hash")
+
+    df = pd.concat([Reducer.simple_ts_split(temp.merge(
             pd.read_pickle(fm_root + 'dev_labels.pkl'), on="loan_sequence_number",
             how="inner").merge(
             pd.read_pickle(fm_root + 'dev_reg_labels.pkl'), on="loan_sequence_number",

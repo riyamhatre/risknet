@@ -30,7 +30,7 @@ from src.risknet.proc import encoder
 
 #Variables:
 fm_root = "/Users/riyamhatre/Downloads/historical_data_2009Q1/" #location of FM data files
-data: List[Tuple[str, str, str]] = [('historical_data_time_2009Q1.txt', 'dev_labels.pkl', 'dev_reg_labels.pkl')]
+data: List[Tuple[str, str, str]] = [('out.parquet', 'dev_labels.pkl', 'dev_reg_labels.pkl')]
 cat_label: str = "default"
 non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
 #('historical_data_time_2014Q1.txt', 'oot_labels.pkl', 'oot_reg_labels.pkl')]
