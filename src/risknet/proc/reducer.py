@@ -58,7 +58,7 @@ class Reducer:
 
         if run_correlations:
             corr_matrix = df.corr().abs()
-            upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape),k=1).astype(np.bool))
+            upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape),k=1).astype(bool)) #Changed from numpy.bool to bool due to deprecation error
             high_corr = [column for column in upper.columns if any(upper[column] > corr_threshold)]
 
         self.varsToRemove = list(set(high_nulls + zero_vars + high_corr))

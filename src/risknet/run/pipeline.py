@@ -17,11 +17,14 @@ import yaml
 import os 
 logger = logging.getLogger("freelunch")
 
+import sys
+
 #User-Defined Imports:
 from risknet.run import model
+#sys.path.append(r"src/risknet/run")
+
 
 #Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
-import sys
 sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
 from risknet.proc import label_prep
 from risknet.proc import reducer

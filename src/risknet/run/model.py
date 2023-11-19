@@ -60,6 +60,7 @@ class XGBCVTrain(object):
 
         logger.info("Define Evaluation Function")
 
+        #Evaluates XGB features and selects best values for HYPERparameters based on bayesian optimization
         def xgb_evaluate(eta, gamma, max_depth, min_child_weight, subsample, colsample_bytree, l_2, l_1, rounds):
             param = {'eta': eta,
                      'gamma': gamma,
