@@ -5,6 +5,10 @@ general:
   gcp_dask_workers: 4
 data:
   titanic_root: gs://albell-test/
+  fm_root : "ADD YOUR FM_ROOT FILEPATH" #Path for fm_root 
+  files:                                #TODO modify file names after switching from pkl
+    - !!python/tuple ['historical_data_time_2009Q1.txt', 'dev_labels.pkl', 'dev_reg_labels.pkl'] #File names for getting the data
+    
 model:
   cv_strategy: time-series
   imputation: zero

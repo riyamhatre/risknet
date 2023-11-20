@@ -20,12 +20,15 @@ logger = logging.getLogger("freelunch")
 import sys
 
 #User-Defined Imports:
+risknet_run_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'run')
+sys.path.append(risknet_run_path)
+
 from risknet.run import model
 #sys.path.append(r"src/risknet/run")
 
-
 #Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
-sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
+risknet_proc_path = risknet_run_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'run')
+sys.path.append(risknet_proc_path) #reorient directory to access proc .py files
 from risknet.proc import label_prep
 from risknet.proc import reducer
 from risknet.proc import encoder
@@ -94,3 +97,6 @@ auc, pr, recall = model.xgb_eval(data)
 print(auc)
 print(pr)
 print(recall)
+
+
+    
