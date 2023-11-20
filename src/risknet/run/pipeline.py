@@ -33,7 +33,7 @@ from risknet.proc import label_prep
 from risknet.proc import reducer
 from risknet.proc import encoder
 
-config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','config.yaml')
+config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','conf.yaml')
 
 with open(config_path) as conf:
     config = yaml.full_load(conf)
