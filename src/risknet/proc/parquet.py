@@ -27,7 +27,7 @@ def parquet_convert():
 
     monthly['row_hash'] = monthly.assign(partition_count=50).partition_count.cumsum() % 50
 
-    monthly.to_parquet('/Users/riyamhatre/Downloads/historical_data_2009Q1/out.parquet', partition_on = "row_hash")
+    monthly.to_parquet('/Users/riyamhatre/Downloads/historical_data_2009Q1/monthly.parquet', partition_on = "row_hash")
 
     org = dd.read_csv('/Users/riyamhatre/Downloads/historical_data_2009Q1/historical_data_2009Q1.txt', sep='|', header = None,dtype={25: 'object',
            26: 'object',
@@ -43,6 +43,6 @@ def parquet_convert():
                                            "number_of_borrowers", "seller_name", "servicer_name", "super_conforming_flag"]
     org['row_hash'] = org.assign(partition_count=50).partition_count.cumsum() % 50
 
-    org.to_parquet('/Users/riyamhatre/Downloads/historical_data_2009Q1/out1.parquet', partition_on = "row_hash")
+    org.to_parquet('/Users/riyamhatre/Downloads/historical_data_2009Q1/org.parquet', partition_on = "row_hash")
 
 parquet_convert()
