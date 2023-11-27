@@ -37,7 +37,8 @@ import encoder
 import fe
 
 #Variables:
-fm_root = "/Users/emily/Desktop/local_180/data/" #location of FM data files
+#fm_root = "/Users/emily/Desktop/local_180/data/" #location of FM data files
+fm_root = "../../../../../teams/a15/data/"
 data: List[Tuple[str, str, str]] = [('historical_data_time_2009Q1.txt', 'dev_labels.pkl', 'dev_reg_labels.pkl')]
 cat_label: str = "default"
 non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']

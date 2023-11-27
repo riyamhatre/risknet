@@ -1,3 +1,4 @@
+Past best params:
 2023-11-17 14:29:47,129:DEBUG:matplotlib data path: /Users/emily/anaconda3/envs/risknet_test/lib/python3.11/site-packages/matplotlib/mpl-data
 2023-11-17 14:29:47,135:DEBUG:CONFIGDIR=/Users/emily/.matplotlib
 2023-11-17 14:29:47,136:DEBUG:interactive is False
@@ -19,6 +20,8 @@
 2023-11-17 14:35:07,854:INFO:XGB TRAINING AND EVALUATION OUTPUT DONE
 2023-11-17 14:35:07,854:INFO:Total time: 4.6minutes
 
+
+Current:
 2023-11-17 19:07:42,068:DEBUG:matplotlib data path: /Users/emily/anaconda3/envs/risknet_test/lib/python3.11/site-packages/matplotlib/mpl-data
 2023-11-17 19:07:42,075:DEBUG:CONFIGDIR=/Users/emily/.matplotlib
 2023-11-17 19:07:42,076:DEBUG:interactive is False
