@@ -1,7 +1,5 @@
-import pandas as pd
-import numpy as np
 import dask.dataframe as dd
-import dask.array as da
+import pandas as pd
 
 def parquet_convert():
     monthly = dd.read_csv('/Users/riyamhatre/Downloads/historical_data_2009Q1/historical_data_time_2009Q1.txt', sep='|', header = None,dtype={23: 'object',
@@ -44,5 +42,13 @@ def parquet_convert():
     org['row_hash'] = org.assign(partition_count=50).partition_count.cumsum() % 50
 
     org.to_parquet('/Users/riyamhatre/Downloads/historical_data_2009Q1/org.parquet', partition_on = "row_hash")
+
+    #change pickled datasets to parquet
+    path = '/Users/riyamhatre/Downloads/historical_data_2009Q1/'
+    dev_labels = pd.read_pickle(path + 'dev_labels.pkl', compression='infer')
+    dev_reg_labels = pd.read_pickle(path + 'dev_reg_labels.pkl', compression='infer')
+    dev_labels.to_parquet(path+'dev_labels' + '.parquet')
+    dev_reg_labels.to_parquet(path + 'dev_reg_labels' + '.parquet')
+
 
 parquet_convert()

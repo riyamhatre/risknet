@@ -23,18 +23,25 @@ import model
 
 #Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
 sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
+# import label_prep
+# import reducer
+# import encoder
+
 from src.risknet.proc import label_prep
 from src.risknet.proc import reducer
 from src.risknet.proc import encoder
+
+
 # from src.risknet.proc import parquet
 
 
 #Variables:
 fm_root = "/Users/riyamhatre/Downloads/historical_data_2009Q1/" #location of FM data files
-# make generic path, dsmlp
-data: List[Tuple[str, str, str]] = [('monthly.parquet', 'dev_labels.pkl', 'dev_reg_labels.pkl')] #parquet better for dask
+# make generic path
+#data: List[Tuple[str, str, str]] = [('monthly.parquet', 'dev_labels.pkl', 'dev_reg_labels.pkl')] #parquet better for dask
+data: List[Tuple[str, str, str]] = [('monthly.parquet', 'dev_labels.parquet', 'dev_reg_labels.parquet')]
 #model pickles good, dataframe pickles bad (change them)
-#SCP
+
 cat_label: str = "default"
 non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
 #('historical_data_time_2014Q1.txt', 'oot_labels.pkl', 'oot_reg_labels.pkl')]
