@@ -29,6 +29,7 @@ The second two strs are the .pkl names for the .pkl files that will store "defau
 If the len(List) > 1, then we are pulling data from multiple years.
 '''
 def label_proc(fm_root, label_sets):
+    #['borrower_assistance','step_modification_flag','deferred_payment_modification']
 
     performance_cols: List[str] =  ["loan_sequence_number", "monthly_reporting_period", "current_actual_upb",
                                    "current_loan_delinquency_status", "loan_age",
@@ -48,7 +49,7 @@ def label_proc(fm_root, label_sets):
         performance_df = pd.read_parquet(fm_root + i[0])
         #print(len(performance_df.columns))
         performance_df.columns = performance_cols
-        performance_df = performance_df.drop(columns= {"row_hash"}).loc[:,
+        performance_df = performance_df.drop(columns= {"row_hash",'borrower_assistance','step_modification_flag','deferred_payment_modification'}).loc[:,
                                     ["loan_sequence_number", "monthly_reporting_period",
                                     "current_loan_delinquency_status",
                                     "zero_balance_code", "loan_age", "remaining_months_to_maturity"]]

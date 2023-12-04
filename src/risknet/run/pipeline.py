@@ -32,15 +32,11 @@ from src.risknet.proc import reducer
 from src.risknet.proc import encoder
 
 
-# from src.risknet.proc import parquet
-
-
 #Variables:
 fm_root = "/Users/riyamhatre/Downloads/historical_data_2009Q1/" #location of FM data files
 # make generic path
-#data: List[Tuple[str, str, str]] = [('monthly.parquet', 'dev_labels.pkl', 'dev_reg_labels.pkl')] #parquet better for dask
+
 data: List[Tuple[str, str, str]] = [('monthly.parquet', 'dev_labels.parquet', 'dev_reg_labels.parquet')]
-#model pickles good, dataframe pickles bad (change them)
 
 cat_label: str = "default"
 non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
