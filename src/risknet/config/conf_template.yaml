@@ -1,3 +1,4 @@
+# COPY EVERYTHING BELOW INTO conf.yaml (Create if doesn't exist)
 general:
   app_name: risknet
   log_bucket: gs://albell-logs/
@@ -5,10 +6,10 @@ general:
   gcp_dask_workers: 4
 data:
   titanic_root: gs://albell-test/
-  fm_root : "ADD YOUR FM_ROOT HERE"
+  fm_root : "YOUR_FM_ROOT" #TODO: Add your fm_root
   files:  
     - !!python/tuple ['historical_data_time_2009Q1.txt', 'dev_labels.pkl', 'dev_reg_labels.pkl'] #File names for getting the data
-    #TODO modify file names a
+    #TODO modify file names as needed
 model:
   cv_strategy: time-series
   imputation: zero

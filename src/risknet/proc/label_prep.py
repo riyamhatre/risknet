@@ -7,6 +7,7 @@ import numpy as np
 from typing import List, Dict, Tuple
 import pickle
 import logging
+import os 
 import dask.dataframe as dd #use dask in place of pandas
 from risknet.config import handlers
 logger = logging.getLogger("freelunch")
@@ -79,6 +80,8 @@ def execute(fm_root=None,data=None):
     if not fm_root:
         fm_root = config.fm_root
     
+    fm_root = os.path.expanduser(fm_root)
+
     if not data:
         data = config.data
     else:

@@ -34,12 +34,11 @@ from risknet.proc import reducer
 from risknet.proc import encoder
 
 config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','conf.yaml')
-
 with open(config_path) as conf:
     config = yaml.full_load(conf)
 
 #Variables:
-fm_root = config['data']['fm_root']  #location of FM data files
+fm_root = os.path.expanduser(config['data']['fm_root'])  #location of FM data files
 data: List[Tuple[str, str, str]] = config['data']['files']
 cat_label: str = "default"
 non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
