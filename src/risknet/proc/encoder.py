@@ -11,7 +11,7 @@ import pickle
 
 
 #User-Defined Imports
-import reducer
+from risknet.proc import reducer
 
 #Global Variables:
 numericals: List[str] = ['credit_score', 'number_of_units', 'orig_combined_loan_to_value', 'dti_ratio', 'original_unpaid_principal_balance', 'original_ltv', 'number_of_borrowers']
