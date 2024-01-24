@@ -6,9 +6,7 @@ from pandas import DataFrame
 import numpy as np
 from typing import List, Dict, Tuple
 import pickle
-import pyarrow as pa
 import logging
-import dask.dataframe as dd #use dask in place of pandas
 logger = logging.getLogger("freelunch")
 
 # from src.risknet.proc import parquet
