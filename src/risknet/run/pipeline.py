@@ -42,7 +42,7 @@ from risknet.proc import reducer
 from risknet.proc import encoder
 from risknet.proc import fe
 
-config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','conf.yaml')
+config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','conf_template.yaml')
 with open(config_path) as conf:
     config = yaml.full_load(conf)
 
@@ -56,7 +56,8 @@ non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
 #Pipeline:
 
 #Step 1: Label Processing: Returns dev_labels.pkl and dev_reg_labels.pkl
-label_prep.label_proc(fm_root, data)
+#label_prep.label_proc(fm_root, data)
+label_prep.execute(fm_root)
 
 #Step 2: Reducer: Returns df of combined data to encode
 df = reducer.reduce(fm_root, data[0]) 
@@ -100,7 +101,7 @@ df = encoder.scale(df, fm_root)
 #This puts the complete scaled/cleaned dataframe into df.pkl located in fm_root
 
 #Feature Engineering
-df = fe.fe(df)
+#df = fe.fe(df)
 
 #Training the XGB Model
 data = model.xgb_train(df, fm_root, baseline=False)

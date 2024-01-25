@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger("freelunch")
 
 #Local imports
-import encoder
+from risknet.proc import encoder
 
 '''
 Uses featuretools's DFS method to generate new features from df.pkl
