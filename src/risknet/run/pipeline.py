@@ -101,7 +101,10 @@ df = encoder.scale(df, fm_root)
 #This puts the complete scaled/cleaned dataframe into df.pkl located in fm_root
 
 #Feature Engineering
-#df = fe.fe(df)
+#df = fe.fe(df, fm_root)
+df = fe.fe(df, fm_root)
+#fe = pd.read_pickle(fm_root + 'combo.pkl')
+#print(fe.info(verbose=True))
 
 #Training the XGB Model
 data = model.xgb_train(df, fm_root, baseline=False)

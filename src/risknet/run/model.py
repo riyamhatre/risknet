@@ -182,6 +182,8 @@ def xgb_train(df, fm_root, baseline=False, cat_label='default'):
     #df = pd.read_pickle(fm_root + 'df.pkl') #pull scaled df and labels
     df = df.merge(pd.read_pickle(fm_root + 'df.pkl')) #merge FE df + the clean df from df.pkl
 
+    print(df.info(verbose=True))
+
     non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag', 'loan_sequence_number'] #Add loan_seq_num EC
     
     if baseline == True:
