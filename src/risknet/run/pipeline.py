@@ -42,7 +42,7 @@ from risknet.proc import reducer
 from risknet.proc import encoder
 from risknet.proc import fe
 
-config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','conf_template.yaml')
+config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','conf.yaml')
 with open(config_path) as conf:
     config = yaml.full_load(conf)
 
