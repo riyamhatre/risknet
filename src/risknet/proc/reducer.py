@@ -30,7 +30,7 @@ def reduce(fm_root, i):
     drop_cols: List[str] = ['maturity_date', 'metropolitan_division', 'original_interest_rate', 'property_state',
                             'postal_code', 'mortgage_insurance_percent', 'original_loan_term']
 
-    temp = pd.read_parquet(fm_root + 'org.parquet')
+    temp = pd.read_parquet(fm_root + 'org')
     temp.columns = origination_cols
     temp = temp.drop(columns = "row_hash")
 
