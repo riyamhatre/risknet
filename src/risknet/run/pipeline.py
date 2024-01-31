@@ -12,10 +12,18 @@ import numpy as np
 
 from typing import List, Dict, Tuple
 import pickle
+
 import logging
 import yaml
 import os 
 logger = logging.getLogger("freelunch")
+
+#This ensures the info-level logs get stored in a new file called "test.log"
+logging.basicConfig(
+    filename="test.log",
+    level=logging.DEBUG,
+    format="%(asctime)s:%(levelname)s:%(message)s"
+    )
 
 import sys
 
@@ -32,6 +40,7 @@ sys.path.append(risknet_proc_path) #reorient directory to access proc .py files
 from risknet.proc import label_prep
 from risknet.proc import reducer
 from risknet.proc import encoder
+from risknet.proc import fe
 
 config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','conf.yaml')
 with open(config_path) as conf:
@@ -47,7 +56,8 @@ non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
 #Pipeline:
 
 #Step 1: Label Processing: Returns dev_labels.pkl and dev_reg_labels.pkl
-label_prep.label_proc(fm_root, data)
+#label_prep.label_proc(fm_root, data)
+label_prep.execute(fm_root)
 
 #Step 2: Reducer: Returns df of combined data to encode
 df = reducer.reduce(fm_root, data[0]) 
@@ -88,9 +98,16 @@ df = encoder.rme(df, fm_root)
 
 #Scale the df
 df = encoder.scale(df, fm_root)
+#This puts the complete scaled/cleaned dataframe into df.pkl located in fm_root
+
+#Feature Engineering
+#df = fe.fe(df, fm_root)
+df = fe.fe(df, fm_root)
+#fe = pd.read_pickle(fm_root + 'combo.pkl')
+#print(fe.info(verbose=True))
 
 #Training the XGB Model
-data = model.xgb_train(fm_root, baseline=False)
+data = model.xgb_train(df, fm_root, baseline=False)
 auc, pr, recall = model.xgb_eval(data)
 
 print(auc)

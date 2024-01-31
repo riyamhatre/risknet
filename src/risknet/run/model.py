@@ -99,14 +99,14 @@ class XGBCVTrain(object):
         xgb_bo = BayesianOptimization(xgb_evaluate, pbounds=bounds)
 
         #xgb_bo.set_gp_param(kappa=2.576) #Removed by EC because it didn't like the way I passed in kappa below and wouldn't accept set_gp_param
+        #In this case, n_init = # of random starting points to start iterating for hyperparams
+        #In this case, n_iter = # of steps of bayesian optimization to perform
         xgb_bo.maximize(init_points=bayes_n_init, n_iter=bayes_n_iter)
+        #This is what generates iter | target | x | etc.
 
-
-        logger.info("Best parameters are:")
-
-        logger.info(str(xgb_bo.max['params']))
-
-        # todo print/log ideal params here
+        #These are the best parameters according to logger
+        logger.info("Best/max parameters are:")
+        logger.info(str(xgb_bo.max['params'])) # todo print/log ideal params here
 
         param = {'eta': xgb_bo.max['params']['eta'],
                  'gamma': xgb_bo.max['params']['gamma'],
@@ -134,14 +134,15 @@ class XGBCVTrain(object):
 
         self.importance = sorted(self.bst.get_score(importance_type='gain'),
                                  key=self.bst.get_score(importance_type='gain').get, reverse=True)
+        
+        logger.info("Return numerical score for each feature of how it improves performance")
+        logger.info(self.bst.get_score(importance_type='gain'))
 
         logger.info("run predictions on train and  datasets")
 
         train_label['prediction'] = self.bst.predict(dtrain)
         #EC: apparently this version of XGB says that self.bst doesn't have an attribute best_ntree_limit...will remove
         #ntree_limit=self.bst.best_iteration
-
-        logger.info("Generate Metrics")
 
         fpr, tpr, _ = metrics.roc_curve(train_label[target], train_label['prediction'], pos_label=1)
 
@@ -172,13 +173,16 @@ class XGBCVTrain(object):
 
 
 #Training a Model
-def xgb_train(fm_root, baseline=False, cat_label='default'):
+def xgb_train(df, fm_root, baseline=False, cat_label='default'):
     #Set up, initialize:
     #Create XGB object
     xgb_cv: XGBCVTrain = XGBCVTrain()
 
     #Set up DF
-    df = pd.read_pickle(fm_root + 'df.pkl') #pull scaled df and labels
+    #df = pd.read_pickle(fm_root + 'df.pkl') #pull scaled df and labels
+    df = df.merge(pd.read_pickle(fm_root + 'df.pkl')) #merge FE df + the clean df from df.pkl
+
+    print(df.info(verbose=True))
 
     non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag', 'loan_sequence_number'] #Add loan_seq_num EC
     
