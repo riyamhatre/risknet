@@ -23,27 +23,16 @@ import model
 
 #Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
 sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
-# import label_prep
-# import reducer
-# import encoder
 
-from src.risknet.proc import label_prep
-from src.risknet.proc import reducer
-from src.risknet.proc import encoder
-
-from src.risknet.proc import parquet
-
-monthly_path = '/Users/riyamhatre/Downloads/historical_data_2009Q1/historical_data_time_2009Q1.txt'
-org_path = '/Users/riyamhatre/Downloads/historical_data_2009Q1/historical_data_2009Q1.txt'
-pickle_path = '/Users/riyamhatre/Downloads/historical_data_2009Q1/' #where to store parquets/where pickles are
-
-parquet.parquet_convert(monthly_path,org_path, pickle_path)
+import label_prep
+import reducer
+import encoder
+# from src.risknet.proc import parquet
 
 
 #Variables:
-fm_root = "/Users/riyamhatre/Downloads/historical_data_2009Q1/" #location of FM data files
-# make generic path
-
+fm_root = "src/risknet/data/" #location of FM data files
+# make generic path, dsmlp
 data: List[Tuple[str, str, str]] = [('monthly.parquet', 'dev_labels.parquet', 'dev_reg_labels.parquet')]
 
 cat_label: str = "default"
@@ -57,6 +46,7 @@ non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
 
 #Step 1: Label Processing: Returns dev_labels.pkl and dev_reg_labels.pkl
 label_prep.label_proc(fm_root, data)
+
 
 #Step 2: Reducer: Returns df of combined data to encode
 df = reducer.reduce(fm_root, data[0]) 
