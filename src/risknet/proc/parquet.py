@@ -1,8 +1,11 @@
-import dask.dataframe as dd
 import pandas as pd
+import numpy as np
+import dask.dataframe as dd
+import dask.array as da
 
-def parquet_convert(monthly_path, org_path, pickle_path):
-    monthly = dd.read_csv(monthly_path, sep='|', header = None,dtype={23: 'object',
+def parquet_convert(data1, data2):
+    fm_root = "src/risknet/data/"
+    monthly = dd.read_csv(fm_root+data1, sep='|', header = None,dtype={23: 'object',
            24: 'object',
            28: 'object',
            29: 'object',
@@ -25,9 +28,9 @@ def parquet_convert(monthly_path, org_path, pickle_path):
 
     monthly['row_hash'] = monthly.assign(partition_count=50).partition_count.cumsum() % 50
 
-    monthly.to_parquet(pickle_path + 'monthly.parquet', partition_on = "row_hash")
+    monthly.to_parquet("src/risknet/data/" + '/m.parquet', partition_on = "row_hash")
 
-    org = dd.read_csv(org_path, sep='|', header = None,dtype={25: 'object',
+    org = dd.read_csv(fm_root+data2, sep='|', header = None,dtype={25: 'object',
            26: 'object',
            28: 'object'})
     org = org.drop(columns = {26, 27,28,29,30,31})
@@ -41,17 +44,6 @@ def parquet_convert(monthly_path, org_path, pickle_path):
                                            "number_of_borrowers", "seller_name", "servicer_name", "super_conforming_flag"]
     org['row_hash'] = org.assign(partition_count=50).partition_count.cumsum() % 50
 
-    org.to_parquet(pickle_path + 'org.parquet', partition_on = "row_hash")
+    org.to_parquet("src/risknet/data/" + '/o.parquet', partition_on = "row_hash")
 
-    #change pickled datasets to parquet
-    dev_labels = pd.read_pickle(pickle_path + 'dev_labels.pkl', compression='infer')
-    dev_reg_labels = pd.read_pickle(pickle_path + 'dev_reg_labels.pkl', compression='infer')
-    dev_labels.to_parquet(pickle_path+'dev_labels' + '.parquet')
-    dev_reg_labels.to_parquet(pickle_path + 'dev_reg_labels' + '.parquet')
-
-# monthly_path = '/Users/riyamhatre/Downloads/historical_data_2009Q1/historical_data_time_2009Q1.txt'
-# org_path = '/Users/riyamhatre/Downloads/historical_data_2009Q1/historical_data_2009Q1.txt'
-# pickle_path = '/Users/riyamhatre/Downloads/historical_data_2009Q1/' #where to store parquets/where pickles are
-#
-#
-# parquet_convert(monthly_path,org_path, pickle_path)
+#parquet_convert('historical_data_time_2009Q1.txt','historical_data_2009Q1.txt')
