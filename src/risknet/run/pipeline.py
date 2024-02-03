@@ -7,40 +7,52 @@ Check out the comments to see what each part of the code does.
 #Global Imports:
 import pandas as pd
 from pandas import DataFrame
-
 import numpy as np
-
+import sys
 from typing import List, Dict, Tuple
 import pickle
 import logging
+import yaml
+import os
+
+from risknet.proc import label_prep
+from risknet.proc import reducer
+from risknet.proc import encoder
+from risknet.proc import parquet
+from risknet.proc import fe
+from risknet.run import model
+
 logger = logging.getLogger("freelunch")
 
-import sys
-
-#User-Defined Imports:
-#sys.path.append(r"src/risknet/run")
-import model
-
-#Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
-sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
-
-import label_prep
-import reducer
-import encoder
-# from src.risknet.proc import parquet
-
-
-#Variables:
-fm_root = "src/risknet/data/" #location of FM data files
-# make generic path, dsmlp
-data: List[Tuple[str, str, str]] = [('monthly.parquet', 'dev_labels.parquet', 'dev_reg_labels.parquet')]
-
-cat_label: str = "default"
-non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
-#('historical_data_time_2014Q1.txt', 'oot_labels.pkl', 'oot_reg_labels.pkl')]
+#This ensures the info-level logs get stored in a new file called "test.log"
+logging.basicConfig(
+    filename="test.log",
+    level=logging.DEBUG,
+    format="%(asctime)s:%(levelname)s:%(message)s"
+    )
 
 #load data
 # parquet.parquet_convert()
+
+risknet_run_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'run')
+sys.path.append(risknet_run_path)
+
+risknet_proc_path = risknet_run_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'run')
+sys.path.append(risknet_proc_path) #reorient directory to access proc .py files
+
+config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'config','conf.yaml')
+with open(config_path) as conf:
+    config = yaml.full_load(conf)
+
+#Variables:
+fm_root = os.path.expanduser(config['data']['fm_root'])  #location of FM data files
+data: List[Tuple[str, str, str]] = config['data']['files']
+cat_label: str = "default"
+non_train_columns: List[str] = ['default', 'undefaulted_progress', 'flag']
+
+
+#Note: for some reason risknet.proc.[package_name] didn't work so I'm updating this yall :D
+#sys.path.append(r"src/risknet/proc") #reorient directory to access proc .py files
 
 #Pipeline:
 
@@ -88,8 +100,14 @@ df = encoder.ff(df, fm_root) #Removes bad variables
 #Scale the df
 df = encoder.scale(df, fm_root)
 
+#Feature Engineering
+#df = fe.fe(df, fm_root)
+df = fe.fe(df, fm_root)
+#fe = pd.read_pickle(fm_root + 'combo.pkl')
+#print(fe.info(verbose=True))
+
 #Training the XGB Model
-data = model.xgb_train(fm_root, baseline=False)
+data = model.xgb_train(df, fm_root, baseline=False)
 auc, pr, recall = model.xgb_eval(data)
 
 print(auc)
