@@ -117,7 +117,7 @@ def ff(df, fm_root):
 
     #Identify useless variables and save into badvars.pkl
     red = reducer.Reducer()
-    badvars = list(red.feature_filter(df.loc[df['flag'] == 'train'].loc[:, train_columns]))
+    badvars = list(red.feature_filter(df.loc[df['flag'] == 'train'].loc[:, train_columns])) #filter columns based on correlation using training data
     with open(fm_root + 'badvars.pkl', 'wb') as f:
         pickle.dump(badvars, f)
     #drop useless variables

@@ -32,7 +32,7 @@ logging.basicConfig(
     )
 
 #load data
-# parquet.parquet_convert()
+# parquet.parquet_convert('historical_data_time_2009Q1.txt','historical_data_2009Q1.txt')
 
 risknet_run_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'run')
 sys.path.append(risknet_run_path)
