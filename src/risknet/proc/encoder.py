@@ -11,8 +11,7 @@ import pickle
 
 
 #User-Defined Imports
-#import reducer
-from src.risknet.proc import reducer
+from risknet.proc import reducer
 
 
 #Global Variables:
