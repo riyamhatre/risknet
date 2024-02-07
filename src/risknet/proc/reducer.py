@@ -35,9 +35,9 @@ def reduce(fm_root, i):
     temp = temp.drop(columns = "row_hash")
 
     df = pd.concat([Reducer.simple_ts_split(temp.merge(
-            pd.read_pickle(fm_root + 'dev_labels.pkl'), on="loan_sequence_number",
+            pd.read_pickle(fm_root + 'dev_labels.parquet'), on="loan_sequence_number",
             how="inner").merge(
-            pd.read_pickle(fm_root + 'dev_reg_labels.pkl'), on="loan_sequence_number",
+            pd.read_pickle(fm_root + 'dev_reg_labels.parquet'), on="loan_sequence_number",
             how="inner").drop(columns=drop_cols), sort_key='first_payment_date', split_ratio=[0.8, 0.1, 0.1])])
     return df
 
