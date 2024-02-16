@@ -1,0 +1,35 @@
+center_plot {
+    margin: auto;
+    text-align: center;
+}
+
+.section {
+    text-align: center;
+}
+.usaline{
+    stroke-dasharray: 10;
+    animation: dash 10s linear forwards;
+   }
+   @keyframes dash {
+    from {
+    stroke-dasho�set: 300;
+    }
+    to {
+    stroke-dasho�set: 0;
+    }
+   }
+
+
+.header{
+    font-family: sans-serif;
+    height: 120px;
+    background: linear-gradient(to bottom, #ff0000 0%, #ffcc00 100%);
+    border-style: solid;
+    border-color: white
+}
+
+.section { 
+    font-size: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
