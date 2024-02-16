@@ -1,4 +1,6 @@
-<head>
+hey
+
+<!-- <head>
     <script type="text/javascript" src="script.js">
     </script>
     <link rel="stylesheet" href="styles.css">
@@ -23,4 +25,5 @@
 
 </body>
 
-</html>
+</html> -->
+
