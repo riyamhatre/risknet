@@ -23,15 +23,15 @@
     color: #19dafa !important;
   }
   .banner{
-    width: 80%;
-    height: 20%;
+    width: 640px;
+    height: 40px;
     top: 25%;
-    left: 130px;
+    left: 100px;
     position: absolute;
     color: white;
   }
   .text{
-    width: 50%;
+    width: 300px;
     float: left;
   }
   .text h1{
