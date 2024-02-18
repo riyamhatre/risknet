@@ -30,17 +30,17 @@
     position: absolute;
     color: white;
   }
-  .app-text{
+  .text{
     width: 50%;
     float: left;
   }
-  .app-text h1{
+  .text h1{
     font-size: 43px;
     width: 640px;
     position: relative;
     margin-left: 20px;
   }
-  .app-text p{
+  .text p{
     font-size: 15px;
     width: 650px;
     margin: 30px 0 30px 40px;
