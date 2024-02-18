@@ -11,6 +11,7 @@
   .menu ul{
     display: inline-flex;
     margin:50px;
+    height: 20px;
   }
   .menu ul li{
     list-style: none;
