@@ -23,6 +23,7 @@ body {
   background-color: #42455a;
   border: none;
   color: white;
+  padding: 10px 24px;
 }
   .active{
     color: #19dafa !important;
