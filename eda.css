@@ -8,3 +8,22 @@ body {
     height: 100%;
     background-color: #42455a;
   }
+.banner{
+    width: 640px;
+    height: 40px;
+    top: 25%;
+    left: 100px;
+    position: absolute;
+    color: white;
+  }
+  .text{
+    width: 300px;
+    float: left;
+  }
+.text p{
+    font-size: 15px;
+    width: 640px;
+    margin-left: 20px;
+    line-height: 25px;
+    color: white;
+  }
