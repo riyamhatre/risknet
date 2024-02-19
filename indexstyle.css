@@ -19,6 +19,11 @@ body {
     color: #b2b1b1;
     cursor: pointer; 
   }
+.b1 {
+  background-color: #42455a;
+  border: none;
+  color: white;
+}
   .active{
     color: #19dafa !important;
   }
