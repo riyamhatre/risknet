@@ -12,8 +12,8 @@ body {
     display: inline-flex;
     margin:50px;
   }
-.button {
-  background-color: #42455a; /* Green */
+.b1 {
+  background-color: #42455a;
   border: none;
   color: white;
 }
